@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2076694349704367097}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,3 +126,11 @@ MonoBehaviour:
   speed: 0.01
   hightOffset: 0.5
   rb2d: {fileID: 0}
+  arrived: 0
+  moving: 0
+  xToGo: 0
+  zToGo: 0
+  direction: 0
+  looking: 0
+  walking: 0
+  delta: 0
