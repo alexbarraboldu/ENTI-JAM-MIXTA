@@ -30,30 +30,6 @@ public class CameraController : MonoBehaviour
     // Referencias GameObjects
     private CinemachineFreeLook cinemachine;
 
-    public Transform puntoA;
-    public Transform puntoB;
-    
-    [Range(0f, 3f)]
-    public float smoothTime = 0.3f;
-    
-    [Range(0f,1f)]
-    public float smoothSpeed = 0.125f;
-    public Vector3 velocity = Vector3.zero;
-
-    private void FixedUpdate()
-    {
-
-        //Vector3 smoothedPosition = Vector3.Lerp(puntoA.position, puntoB.position, smoothSpeed);
-        //puntoA.position = smoothedPosition;
-        
-        puntoA.position = Vector3.SmoothDamp(puntoA.position, puntoB.position, ref velocity, smoothTime);
-    }
-
-    public bool doLerp = false;
-
-    public float timeElapsed = 0f;
-    public float lerpDuration = 3f;
-    public Vector3 newPosition;
         
 
     private void Start()
@@ -68,8 +44,6 @@ public class CameraController : MonoBehaviour
         //Get sensibility
         zoomSensibility = GameManager.Instance.zoomSensibility;
         mouseSensibility = GameManager.Instance.mouseSensibility;
-
-        transform.position = puntoA.transform.position;
     }
 
 
@@ -77,12 +51,6 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKey(KeyCode.Q))
-        {
-            doLerp = true;
-        }
-
         
         //INPUTS
         mouseWheel = Input.mouseScrollDelta.y;
