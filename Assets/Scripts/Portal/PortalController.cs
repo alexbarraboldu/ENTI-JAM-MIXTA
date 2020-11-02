@@ -9,12 +9,15 @@ public class PortalController : MonoBehaviour
     public GameObject otherPortal2;
     private PortalController opController;
 
+    private CamTargetController camTarget;
+
     private bool cancelTeleport;
 
     public bool alreadyTeleported { get; set; }
 
     void Start()
     {
+        camTarget = GameObject.Find("CamTarget").GetComponent<CamTargetController>();
         opController = otherPortal2.GetComponent<PortalController>();
         cancelTeleport = false;
     }
@@ -33,8 +36,12 @@ public class PortalController : MonoBehaviour
             if (!cancelTeleport)
             {
                 other.gameObject.transform.position = otherPortal.position;
+                other.GetComponent<PlayerController>().hightOffset = otherPortal.position.y;
                // other.gameObject.transform.rotation = otherPortal.rotation;
                 alreadyTeleported = true;
+
+                //Set new position of CamTarget
+                camTarget.SetTarget(otherPortal.transform);
             }
         }
     }
