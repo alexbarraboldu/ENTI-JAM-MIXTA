@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour
 
 
     // CONFIGURAR OPCIONES
-    public float mouseSensibility;
-    public float zoomSensibility;
+    public float cameraSensibility = 50f;
+    public float zoomSensibility = 50f;
 
 
     //INSTANCE GAME MANAGER
