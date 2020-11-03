@@ -272,8 +272,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7290fbb108372214caa45fa88425ddb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensibility: 0
-  zoomSensibility: 0
+  energy: 1
+  energyLoss: 1
+  energyRegen: 2
+  cameraSensibility: 50
+  zoomSensibility: 50
 --- !u!4 &1555802948
 Transform:
   m_ObjectHideFlags: 0
@@ -297,6 +300,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1689063818}
+  - component: {fileID: 1689063819}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -318,6 +322,46 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1689063819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689063817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c457707ab6c113e40bfc6c5fa87c9468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxClips:
+  - name: 0
+    clip: {fileID: 8300000, guid: b0c799c96e6bd0b40b0583e4cb015f34, type: 3}
+    audioType: 1
+    pitch: 1
+    randomPitch: 0
+    specialEffect: 0
+  - name: 1
+    clip: {fileID: 8300000, guid: 98391c81c0112cc4e8eeb5408810e900, type: 3}
+    audioType: 2
+    pitch: 1
+    randomPitch: 0
+    specialEffect: 0
+  voiceClips: []
+  musicClips:
+  - name: InGame
+    clip: {fileID: 8300000, guid: f259d0d4b96eee14bac5aa26a852a3b0, type: 3}
+    audioType: 2
+    pitch: 1
+    randomPitch: 0
+    musicZone: 1
+  - name: Menu
+    clip: {fileID: 8300000, guid: 768d3f96a70718640832fea73548c020, type: 3}
+    audioType: 2
+    pitch: 1
+    randomPitch: 0
+    musicZone: 2
+  playingNow: 0
 --- !u!1 &1944737447
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,6 +373,7 @@ GameObject:
   - component: {fileID: 1944737450}
   - component: {fileID: 1944737449}
   - component: {fileID: 1944737448}
+  - component: {fileID: 1944737451}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -401,3 +446,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1944737451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944737447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6388a23b6c803eb488522505f6087b6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

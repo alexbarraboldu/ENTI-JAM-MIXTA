@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
     //INTERNAL VARIABLES
     //Variables control camara    
     private float zoomSensibility;
-    private float mouseSensibility;
+    private float cameraSensibility;
 
     //Sólo necesitamos calcular de 1 rig, el resto se mueven a la vez usando el mismo ratio y limites
     private float initRadiusBotRig;
@@ -43,7 +43,7 @@ public class CameraController : MonoBehaviour
         
         //Get sensibility
         zoomSensibility = GameManager.Instance.zoomSensibility;
-        mouseSensibility = GameManager.Instance.mouseSensibility;
+        cameraSensibility = GameManager.Instance.cameraSensibility;
     }
 
 
