@@ -67,12 +67,26 @@ public class MainMenuController : MonoBehaviour
 
     public void OpenCredits(bool state)
     {
-        creditsBlock.SetActive(state);
+        if (state == true && creditsBlock.activeInHierarchy)
+        {
+            creditsBlock.SetActive(false);
+        }
+        else
+        {
+            creditsBlock.SetActive(state);
+        }
     }
 
     public void OpenOptions(bool state)
     {
-        optionsBlock.SetActive(state);
+        if (state == true && optionsBlock.activeInHierarchy)
+        {
+            optionsBlock.SetActive(false);
+        }
+        else
+        {
+            optionsBlock.SetActive(state);
+        }
     }
 
     void Awake()
