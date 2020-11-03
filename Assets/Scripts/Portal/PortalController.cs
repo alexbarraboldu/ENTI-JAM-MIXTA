@@ -11,14 +11,11 @@ public class PortalController : MonoBehaviour
     public bool cancelTeleport;
     private CamTargetController camTarget;
 
-    private bool cancelTeleport;
-
     public bool alreadyTeleported { get; set; }
 
     void Start()
     {
         camTarget = GameObject.Find("CamTarget").GetComponent<CamTargetController>();
-        opController = otherPortal2.GetComponent<PortalController>();
         opController = otherPortal.GetComponent<PortalController>();
         cancelTeleport = false;
     }
