@@ -363,7 +363,8 @@ public class PlayerController : MonoBehaviour
 			{
 				if (hit.collider.gameObject.tag == "Portal")
 				{
-					Debug.Log("Hit: Portal"); return false;
+					//Debug.Log("Hit: Portal");
+					return false;
 				}
 
 				if (hit.collider.gameObject.tag == "Floor")
