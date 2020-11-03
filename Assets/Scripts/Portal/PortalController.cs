@@ -52,6 +52,8 @@ public class PortalController : MonoBehaviour
                 other.gameObject.GetComponent<PlayerController>().walking = false;
                 other.gameObject.GetComponent<PlayerController>().isOnFloor = true;
 
+                other.gameObject.GetComponent<PlayerController>().teleporting = true;
+
                 alreadyTeleported = true;
 
 

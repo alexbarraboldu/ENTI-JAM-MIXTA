@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -21,8 +22,13 @@ public class PlayerController : MonoBehaviour
 	public bool isOnFloor;
 	public bool isUnderDome;
 
+	public bool teleporting;
+	public float timeLeft = 2f;
+	private float timeLeftPrivate;
+
 	//	ANIMATOR
 	public Animator anim;
+	public List<Animator> animWheels;
 	public bool isRear;
 
 	//	MOVEMENT
@@ -38,6 +44,8 @@ public class PlayerController : MonoBehaviour
 		walking = false;
 		looking = Direction.FRONT;
 		arrived = true;
+
+		timeLeftPrivate = timeLeft;
 
 		//	ANIMATOR
 		anim = GetComponentInChildren<Animator>();
@@ -229,7 +237,20 @@ public class PlayerController : MonoBehaviour
 
 	void PlayerMovement()
 	{
-		if (!moving)
+		if (teleporting)
+		{
+			timeLeftPrivate -= Time.deltaTime;
+
+			if (timeLeftPrivate < 0)
+            {
+				teleporting = false;
+				timeLeftPrivate = timeLeft;
+            }
+
+			return;
+		}
+
+        if (!moving)
 		{
 			direction = Direction.NONE;
 			xToGo = rb2d.position.x;
