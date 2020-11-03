@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3347858200448051326}
   - component: {fileID: 6491566194960432186}
   - component: {fileID: 6515957058182431807}
+  - component: {fileID: 6280578495055950890}
   m_Layer: 0
   m_Name: 01_EnergyDome
   m_TagString: EnergyDome
@@ -110,3 +111,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6280578495055950890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3851993008865675691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d3cae85a97c8c48b90f6d72bbd21ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

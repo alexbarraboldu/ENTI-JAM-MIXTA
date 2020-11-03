@@ -12,6 +12,10 @@ public class LevelManager : MonoBehaviour
     private float energyLoss;
     private float energyRegen;
 
+    private float time = 0f;
+    private int energy;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +25,14 @@ public class LevelManager : MonoBehaviour
 
         energyLoss = gm.energyLoss;
         energyRegen = gm.energyRegen;
+
+        energySlider.maxValue = 10f;
+        energySlider.value = energySlider.maxValue;
+
+        
     }
+
+    
 
     // Update is called once per frame
     void Update()
@@ -35,14 +46,23 @@ public class LevelManager : MonoBehaviour
 
         if(player.isUnderDome)
         {
-            energySlider.value -= energyLoss * Time.deltaTime;
+            energySlider.value += energyRegen;
         } else
         {
-            energySlider.value += energyRegen * Time.deltaTime;
+            energySlider.value -= energyLoss;
         }
 
-        Debug.Log("Energy: " + energySlider.value);
+        //Debug.Log("Energy: " + energySlider.value);
+
+        time += Time.deltaTime;
+
+        energy = Mathf.FloorToInt(time % 60);
+
+        Debug.LogWarning(energy);
+
 
 
     }
+
+    
 }

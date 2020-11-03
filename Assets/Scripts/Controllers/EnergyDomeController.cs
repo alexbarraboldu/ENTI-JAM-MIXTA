@@ -21,12 +21,21 @@ public class EnergyDomeController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        player.isUnderDome = true;
+        if(other.gameObject.tag == "Player")
+        {
+            player.isUnderDome = true;
+            Debug.Log("Entrando dome");
+        }
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
-        player.isUnderDome = false;
+        if (other.gameObject.tag == "Player")
+        {
+            player.isUnderDome = false;
+            Debug.Log("Saliendo dome");
+        }
     }
 
 }
