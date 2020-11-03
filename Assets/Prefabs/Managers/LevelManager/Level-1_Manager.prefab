@@ -49,5 +49,5 @@ MonoBehaviour:
   energyRegen: 0.1
   maxDiamonds: 3
   diamonds: 0
-  fillArea: {fileID: 1643777928633012667, guid: 0a208fe2a45a32b40963443e93a1cf23,
-    type: 3}
+  maxTimeDangerSound: 1
+  thresholdDanger: 25

@@ -464,7 +464,6 @@ Transform:
   m_LocalScale: {x: 134.772, y: 134.772, z: 134.772}
   m_Children:
   - {fileID: 2667846906704672254}
-  - {fileID: 3114973233086706106}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

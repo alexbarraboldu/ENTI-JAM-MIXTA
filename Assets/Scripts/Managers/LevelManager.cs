@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
     public float energyRegen = 2f;
 
     //  GAME ELEMENTS
-    public int maxDiamonds = 0;
+    private int maxDiamonds = 0;
     public int diamonds = 0;
 
     private Slider energySlider;
@@ -57,7 +57,7 @@ public class LevelManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            energy = 1f;
+            energy = 100f;
         }
 
         if (diamonds >= maxDiamonds)
@@ -75,6 +75,13 @@ public class LevelManager : MonoBehaviour
         EnergyControl();
     }
 
+
+    private float timeDangerSound = 0f;
+    private float maxTimeDangerSound = 2f;
+    public float thresholdDanger0 = 80;
+    public float thresholdDanger1 = 50;
+    public float thresholdDanger2 = 25;
+
     void EnergyControl()
     {
         if (immortal) return;
@@ -86,6 +93,40 @@ public class LevelManager : MonoBehaviour
 
             return;
         }
+
+
+        // PARTE AUDIO
+        if (!player.isUnderDome)
+        {
+            if (energySlider.value <= thresholdDanger0 && energySlider.value > thresholdDanger1)
+            {
+                timeDangerSound += Time.deltaTime;
+                if(timeDangerSound >= maxTimeDangerSound - 0.75f)
+                {
+                    timeDangerSound = 0;
+                    SoundManager.Instance.PlaySfxForcePitch("Danger", 1);
+                }
+            } 
+            else if (energySlider.value <= thresholdDanger1 && energySlider.value > thresholdDanger2)
+            {
+                timeDangerSound += Time.deltaTime;
+                if (timeDangerSound >= maxTimeDangerSound-0.25f)
+                {
+                    timeDangerSound = 0;
+                    SoundManager.Instance.PlaySfxForcePitch("Danger", 0.87f);
+                }
+            } 
+            else if (energySlider.value <= thresholdDanger2)
+            {
+                timeDangerSound += Time.deltaTime;
+                if (timeDangerSound >= maxTimeDangerSound)
+                {
+                    timeDangerSound = 0;
+                    SoundManager.Instance.PlaySfxForcePitch("Danger", 0.80f);
+                }
+            }
+        }
+        // PARTE LOGICA
 
         if (player.isUnderDome)
         {

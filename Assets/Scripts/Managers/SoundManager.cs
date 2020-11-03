@@ -44,6 +44,12 @@ public class Audio
         source.Play();
     }
 
+    public void PlayForcePitch(float newPitch)
+    {
+        source.pitch = newPitch;
+        source.Play();
+    }
+
     public AudioSource GetAudioSource()
     {
         return source;
@@ -134,6 +140,20 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     public SpecialEffect[] sfxClips;
 
+    
+    public void PlaySfxForcePitch(string _name, float newPitch)
+    {
+        for (int i = 0; i < sfxClips.Length; i++)
+        {
+            if (sfxClips[i].name == _name)
+            {
+                sfxClips[i].PlayForcePitch(newPitch);
+                return;
+            }
+        }
+        Debug.LogWarning("AudioManager> SFX not found: " + _name);
+        return;
+    }
     public void PlaySfx(string _name)
     {
         for (int i = 0; i < sfxClips.Length; i++)
@@ -500,9 +520,9 @@ public class SoundManager : MonoBehaviour
         musicAudioSource = musicSource.GetComponent<AudioSource>();
 
 
-        masterVolume = 0.75f;
-        musicVolume = 0.5f;
-        sfxVolume = 0.5f;
+        masterVolume = 0.50f;
+        musicVolume = 0.25f;
+        sfxVolume = 0.25f;
 
 
         playingNow = Utils.PlayingNow.NONE;
