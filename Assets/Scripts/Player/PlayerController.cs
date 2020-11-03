@@ -351,7 +351,6 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-
 	private void PlayerAnimation()
 	{
 		if (!walking)
@@ -550,5 +549,15 @@ public class PlayerController : MonoBehaviour
 
 		return false;
 	}
+
+    private void OnTriggerEnter(Collider other)
+    {
+		if (other.gameObject.tag == "Diamond")
+        {
+			Debug.Log("Diamond");
+			Destroy(other.gameObject);
+			GameManager.Instance.diamonds += 1;
+        }
+    }
 
 }

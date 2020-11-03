@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     public float energyLoss = 1f;
     public float energyRegen = 2f;
 
-
+    //  GAME ELEMENTS
+    public int diamonds = 0;
 
     // CONFIGURAR OPCIONES
     public float mouseSensibility;
