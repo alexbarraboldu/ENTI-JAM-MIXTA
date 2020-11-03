@@ -410,7 +410,7 @@ Transform:
   m_LocalScale: {x: 10.5, y: 1, z: 10.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &862140776 stripped
 GameObject:
@@ -605,25 +605,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1352473276 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6149716740309160471, guid: cb7c65dcab333f940887641839b6857f,
-    type: 3}
-  m_PrefabInstance: {fileID: 6149716739085098697}
-  m_PrefabAsset: {fileID: 0}
---- !u!135 &1352473280
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1352473276}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1787292106
 GameObject:
   m_ObjectHideFlags: 0
