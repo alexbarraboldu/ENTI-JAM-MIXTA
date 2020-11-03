@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour
 	//	MOVEMENT
 	public List<KeyCode[]> keyCodes;
 
-    void Start()
-    {
+	void Start()
+	{
 		rb2d = GetComponent<Rigidbody>();
 		//xToGo = 0;
 		//zToGo = 0;
@@ -57,14 +57,14 @@ public class PlayerController : MonoBehaviour
 	}
 
 	void Update()
-    {
+	{
 		delta = Time.deltaTime * 1000.0f;
 		PlayerMovement();
 		PlayerAnimation();
-    }
+	}
 
 	void moveFront(KeyCode[] keyCodes)
-    {
+	{
 		if (Input.GetKey(keyCodes[0]))	//	FRONT
 		{
 			direction = Direction.FRONT;
@@ -77,25 +77,25 @@ public class PlayerController : MonoBehaviour
 		{
 			direction = Direction.REAR;
 			looking = Direction.REAR;
-			zToGo -= 1f;
-			moving = true;
-			walking = true;
+			//zToGo -= 1f;
+			//moving = true;
+			//walking = true;
 		}
 		else if (Input.GetKeyDown(keyCodes[2])) //	LEFT
 		{
 			direction = Direction.LEFT;
 			looking = Direction.LEFT;
-			xToGo -= 1f;
-			moving = true;
-			walking = true;
+			//xToGo -= 1f;
+			//moving = true;
+			//walking = true;
 		}
 		else if (Input.GetKeyDown(keyCodes[3]))	//	RIGHT
 		{
 			direction = Direction.RIGHT;
 			looking = Direction.RIGHT;
-			xToGo += 1f;
-			moving = true;
-			walking = true;
+			//xToGo += 1f;
+			//moving = true;
+			//walking = true;
 		}
 		else
 		{
@@ -109,9 +109,9 @@ public class PlayerController : MonoBehaviour
 		{
 			direction = Direction.FRONT;
 			looking = Direction.FRONT;
-			zToGo += 1f;
-			moving = true;
-			walking = true;
+			//zToGo += 1f;
+			//moving = true;
+			//walking = true;
 		}
 		else if (Input.GetKey(keyCodes[1]))	//	FRONT
 		{
@@ -125,17 +125,17 @@ public class PlayerController : MonoBehaviour
 		{
 			direction = Direction.LEFT;
 			looking = Direction.LEFT;
-			xToGo -= 1f;
-			moving = true;
-			walking = true;
+			//xToGo -= 1f;
+			//moving = true;
+			//walking = true;
 		}
 		else if (Input.GetKeyDown(keyCodes[3])) //	LEFT
 		{
 			direction = Direction.RIGHT;
 			looking = Direction.RIGHT;
-			xToGo += 1f;
-			moving = true;
-			walking = true;
+			//xToGo += 1f;
+			//moving = true;
+			//walking = true;
 		}
 		else
 		{
@@ -149,33 +149,33 @@ public class PlayerController : MonoBehaviour
 		{
 			direction = Direction.FRONT;
 			looking = Direction.FRONT;
-			zToGo += 1f;
-			moving = true;
-			walking = true;
+			//zToGo += 1f;
+			//moving = true;
+			//walking = true;
 		}
 		else if (Input.GetKeyDown(keyCodes[1]))	//	LEFT
 		{	
 			direction = Direction.REAR;
 			looking = Direction.REAR;
-			zToGo -= 1f;
-			moving = true;
-			walking = true;
+			//zToGo -= 1f;
+			//moving = true;
+			//walking = true;
 		}
 		else if (Input.GetKey(keyCodes[2]))	//	FRONT
 		{
 			direction = Direction.LEFT;
 			looking = Direction.LEFT;
-			xToGo -= 1f;
-			moving = true;
-			walking = true;
-		}
+            xToGo -= 1f;
+            moving = true;
+            walking = true;
+        }
 		else if (Input.GetKeyDown(keyCodes[3]))	//	REAR
 		{
 			direction = Direction.RIGHT;
 			looking = Direction.RIGHT;
-			xToGo += 1f;
-			moving = true;
-			walking = true;
+			//xToGo += 1f;
+			//moving = true;
+			//walking = true;
 		}
 		else
 		{
@@ -189,34 +189,34 @@ public class PlayerController : MonoBehaviour
 		{
 			direction = Direction.FRONT;
 			looking = Direction.FRONT;
-			zToGo += 1f;
-			moving = true;
-			walking = true;
+			//zToGo += 1f;
+			//moving = true;
+			//walking = true;
 		}
 		else if (Input.GetKeyDown(keyCodes[1]))	//	RIGHT
 		{
 			direction = Direction.REAR;
 			looking = Direction.REAR;
-			zToGo -= 1f;
-			moving = true;
-			walking = true;
+			//zToGo -= 1f;
+			//moving = true;
+			//walking = true;
 		}
 		else if (Input.GetKeyDown(keyCodes[2]))	//	REAR
 		{
 			direction = Direction.LEFT;
 			looking = Direction.LEFT;
-			xToGo -= 1f;
-			moving = true;
-			walking = true;
+			//xToGo -= 1f;
+			//moving = true;
+			//walking = true;
 		}
 		else if (Input.GetKey(keyCodes[3]))	//	FRONT
 		{
 			direction = Direction.RIGHT;
 			looking = Direction.RIGHT;
-			xToGo += 1f;
-			moving = true;
-			walking = true;
-		}
+            xToGo += 1f;
+            moving = true;
+            walking = true;
+        }
 		else
 		{
 			walking = false;
@@ -233,27 +233,27 @@ public class PlayerController : MonoBehaviour
 			int wheresLooking = (int)looking;
 			if (wheresLooking != 0) wheresLooking -= 1;
 
-            switch (looking)
-            {
-                case Direction.NONE:
-                    break;
-                case Direction.FRONT:
+			switch (looking)
+			{
+				case Direction.NONE:
+					break;
+				case Direction.FRONT:
 					moveFront(keyCodes[wheresLooking]);
-                    break;
-                case Direction.REAR:
+					break;
+				case Direction.REAR:
 					moveRear(keyCodes[wheresLooking]);
 					break;
-                case Direction.LEFT:
+				case Direction.LEFT:
 					moveLeft(keyCodes[wheresLooking]);
 					break;
-                case Direction.RIGHT:
+				case Direction.RIGHT:
 					moveRight(keyCodes[wheresLooking]);
 					break;
-                default:
-                    break;
-            }
+				default:
+					break;
+			}
 
-            isOnFloor = false;
+			isOnFloor = false;
 			isCollisionVertical(xToGo, zToGo);
 			if (isCollisionHorizontal(xToGo, zToGo) || isCollisionVertical(xToGo, zToGo) || isOnFloor == false)
 			{
@@ -266,23 +266,23 @@ public class PlayerController : MonoBehaviour
 
 			//ESTO TE COLOCA DE VUELTA AL GRID SI EN ALGUN MOMENTO TE SALIERAS
 			if (Mathf.FloorToInt((rb2d.position.x % 1) * 10) != 5 && Mathf.FloorToInt(Mathf.Repeat(rb2d.position.z, 1.0f) * 10) != 5)
-            {
-                Debug.Log("PLAYER OUT OF GRID");
+			{
+				Debug.Log("PLAYER OUT OF GRID");
 
-                const float p = 0.5f;
-                const float n = -0.5f;
-                float x, z;
-                if (rb2d.position.x > 0) x = p;
-                else x = n;
-                if (rb2d.position.z > 0) z = p;
-                else z = n;
+				const float p = 0.5f;
+				const float n = -0.5f;
+				float x, z;
+				if (rb2d.position.x > 0) x = p;
+				else x = n;
+				if (rb2d.position.z > 0) z = p;
+				else z = n;
 
-                rb2d.position = new Vector3(Mathf.Floor(rb2d.position.x) + x, hightOffset, Mathf.Floor(rb2d.position.z) + z);
+				rb2d.position = new Vector3(Mathf.Floor(rb2d.position.x) + x, hightOffset, Mathf.Floor(rb2d.position.z) + z);
 
-                xToGo = rb2d.position.x;
-                zToGo = rb2d.position.z;
-            }
-        }
+				xToGo = rb2d.position.x;
+				zToGo = rb2d.position.z;
+			}
+		}
 		else
 		{
 			float prevX = rb2d.position.x;
@@ -293,9 +293,9 @@ public class PlayerController : MonoBehaviour
 				case Direction.FRONT:										//	Z AXIS
 					rb2d.position += new Vector3(0, 0,speed * delta);
 					arrived = false;
-                    break;
-                case Direction.REAR:
-                    rb2d.position -= new Vector3(0, 0, speed * delta);
+					break;
+				case Direction.REAR:
+					rb2d.position -= new Vector3(0, 0, speed * delta);
 					arrived = false;
 					break;					   
 				case Direction.RIGHT:										//	X AXIS
@@ -326,28 +326,28 @@ public class PlayerController : MonoBehaviour
 				arrived = true;
 			}
 
-            //CHECK IF ToGo POSITOINS ARE OUT OF GRID
-            if (Mathf.FloorToInt((prevX % 1) * 10) != 5 && Mathf.FloorToInt(Mathf.Repeat(prevZ, 1.0f) * 10) != 5)
-            {
-               // Debug.Log("ToGo OUT OF GRID");
+			//CHECK IF ToGo POSITOINS ARE OUT OF GRID
+			if (Mathf.FloorToInt((prevX % 1) * 10) != 5 && Mathf.FloorToInt(Mathf.Repeat(prevZ, 1.0f) * 10) != 5)
+			{
+			   // Debug.Log("ToGo OUT OF GRID");
 
-                const float p = 0.5f;
-                const float n = -0.5f;
-                float x, z;
-                if (prevX > 0) x = p;
-                else x = n;
-                if (prevZ > 0) z = p;
-                else z = n;
+				const float p = 0.5f;
+				const float n = -0.5f;
+				float x, z;
+				if (prevX > 0) x = p;
+				else x = n;
+				if (prevZ > 0) z = p;
+				else z = n;
 
-                prevX = Mathf.Floor(prevX) + x;
-                prevZ = Mathf.Floor(prevZ) + z;
-            }
+				prevX = Mathf.Floor(prevX) + x;
+				prevZ = Mathf.Floor(prevZ) + z;
+			}
 
-            if (rb2d.position.x != xToGo && rb2d.position.z != zToGo && !arrived)
-            {
-                rb2d.position = new Vector3(prevX, hightOffset, prevZ);
-                moving = false;
-            }
+			if (rb2d.position.x != xToGo && rb2d.position.z != zToGo && !arrived)
+			{
+				rb2d.position = new Vector3(prevX, hightOffset, prevZ);
+				moving = false;
+			}
 		}
 	}
 
@@ -381,7 +381,7 @@ public class PlayerController : MonoBehaviour
 			default:
 				break;
 		}
-    }
+	}
 
 	private bool isCollisionHorizontal(float _x, float _Z)
 	{
@@ -507,13 +507,13 @@ public class PlayerController : MonoBehaviour
 				if (checkFloor == false)
 				{
 
-                    if (hit.collider.gameObject.tag == "Portal")
-                    {
+					if (hit.collider.gameObject.tag == "Portal")
+					{
 						collisionList.Add(false);
 					}
 
 					if (hit.collider.gameObject.tag == "EnergyDome")
-                    {
+					{
 						collisionList.Add(false);
 					}
 
@@ -530,11 +530,6 @@ public class PlayerController : MonoBehaviour
 						isOnFloor = true;
 						collisionList.Add(false);
 					}
-					//else
-					//{
-					//	collisionList.Add(true);
-					//	//continue;
-					//}
 				}	
 			}
 		}
@@ -550,15 +545,15 @@ public class PlayerController : MonoBehaviour
 		return false;
 	}
 
-    private void OnTriggerEnter(Collider other)
-    {
+	private void OnTriggerEnter(Collider other)
+	{
 		if (other.gameObject.tag == "Diamond")
-        {
+		{
 			Debug.Log("Diamond");
 			SoundManager.Instance.PlaySfx("Diamond");
 			Destroy(other.gameObject);
 			LevelManager.Instance.diamonds += 1;
-        }
+		}
 
 		if (other.gameObject.tag == "Power")
 		{

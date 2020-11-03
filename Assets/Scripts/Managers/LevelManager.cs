@@ -13,16 +13,11 @@ public class LevelManager : MonoBehaviour
     public float energyRegen = 2f;
 
     //  GAME ELEMENTS
-    public int maxDiamonds = 3;
+    public int maxDiamonds = 0;
     public int diamonds = 0;
 
     private Slider energySlider;
     private PlayerController player;
-
-    private float time = 0f;
-
-    private float nextActionTime = 0.0f;
-    private float period = 1.0f;
 
     //  INSTANCE GAME MANAGER
     public GameObject fillArea;
@@ -44,6 +39,7 @@ public class LevelManager : MonoBehaviour
         energySlider = GameObject.Find("EnergySlider").GetComponent<Slider>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
+        maxDiamonds = GameObject.FindGameObjectsWithTag("Diamond").Length;
         diamonds = 0;
 
         energy = maxEnergy;
@@ -62,6 +58,18 @@ public class LevelManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             energy = 1f;
+        }
+
+        if (diamonds >= maxDiamonds)
+        {
+            if (SceneManager.GetActiveScene().buildIndex == 3)
+            {
+                SceneManager.LoadScene(1);
+            }
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
         }
 
         EnergyControl();
