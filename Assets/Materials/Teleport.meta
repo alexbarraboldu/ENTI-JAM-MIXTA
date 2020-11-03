@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Materials/Teleport.meta
 guid: 0a2e5c291ea94d24182434dbf134b5fa
+=======
+guid: 450556054df08a44fbdb2341cc6e80f8
+>>>>>>> 361597434f1158b0c81e726949feda4ad67c6827:Assets/Materials/EnergyDome.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

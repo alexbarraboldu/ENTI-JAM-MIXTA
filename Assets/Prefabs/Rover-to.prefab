@@ -75,18 +75,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 748e7771cdfecac41989a626ec9d43d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.008
-  hightOffset: 0.15
+  speed: 0.005
+  hightOffset: 0.6
   rb2d: {fileID: 0}
   arrived: 0
   moving: 0
   xToGo: 0
   zToGo: 0
   direction: 0
-  looking: 0
+  looking: 1
   walking: 0
   delta: 0
   isOnFloor: 0
+  isUnderDome: 0
   anim: {fileID: 0}
   isRear: 0
 --- !u!1001 &6149716738562726891

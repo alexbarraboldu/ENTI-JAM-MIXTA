@@ -5,6 +5,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
+    // PLAYER VARIABLES
+    public float energy = 1f;
+    public float energyLoss = 1f;
+    public float energyRegen = 2f;
+
+
+
     // CONFIGURAR OPCIONES
     public float mouseSensibility;
     public float zoomSensibility;
@@ -24,6 +31,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Warning: multiple " + this + " in scene!");
         }
     }
+
 
     // Start is called before the first frame update
     void Start()
