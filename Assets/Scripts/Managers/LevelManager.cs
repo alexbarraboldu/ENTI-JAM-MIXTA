@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 {
     // PLAYER VARIABLES
+    public bool immortal = false;
     public float maxEnergy = 100f;
     public float energy = 0f;
     public float energyLoss = 1f;
@@ -76,6 +77,8 @@ public class LevelManager : MonoBehaviour
 
     void EnergyControl()
     {
+        if (immortal) return;
+
         if (energySlider.value <= 0)
         {
 

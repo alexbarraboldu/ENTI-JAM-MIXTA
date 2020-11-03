@@ -42,6 +42,11 @@ public class PlayerController : MonoBehaviour
 		//	ANIMATOR
 		anim = GetComponentInChildren<Animator>();
 
+		animWheels = new List<Animator>();
+		animWheels.Add(GameObject.Find("02_Rotation_Controller_Wheel_Front").GetComponent<Animator>());
+		animWheels.Add(GameObject.Find("02_Rotation_Controller_Wheel_Middle").GetComponent<Animator>());
+		animWheels.Add(GameObject.Find("02_Rotation_Controller_Wheel_Back").GetComponent<Animator>());
+
 		//	MOVEMENT
 		KeyCode[] KC_Front = { KeyCode.W, KeyCode.S , KeyCode.A , KeyCode.D };
 		KeyCode[] KC_Rear = { KeyCode.S, KeyCode.W , KeyCode.D, KeyCode.A };
@@ -49,7 +54,6 @@ public class PlayerController : MonoBehaviour
 		KeyCode[] KC_Right = { KeyCode.A, KeyCode.D, KeyCode.S, KeyCode.W };
 
 		keyCodes = new List<KeyCode[]>();
-
 		keyCodes.Add(KC_Front);
 		keyCodes.Add(KC_Rear);
 		keyCodes.Add(KC_Left);
@@ -356,10 +360,18 @@ public class PlayerController : MonoBehaviour
 		if (!walking)
 		{
 			anim.SetBool("Moving", false);
+            foreach (var item in animWheels)
+            {
+				item.SetBool("Moving", false);
+            }
 		}
 		else
 		{
 			anim.SetBool("Moving", true);
+			foreach (var item in animWheels)
+			{
+				item.SetBool("Moving", true);
+			}
 		}
 		switch (looking)
 		{
@@ -403,7 +415,7 @@ public class PlayerController : MonoBehaviour
 
 			if (looking == Direction.LEFT)
 			{
-				Pos = new Vector3(transform.position.x - 0.5f, transform.position.y, transform.position.z);
+				Pos = new Vector3(transform.position.x - 0.5f, transform.position.y + 0.25f, transform.position.z);
 				Dir = -transform.right;
 				RaycastHit[] hits = Physics.RaycastAll(Pos, Dir, 1f);
 				if (checkRaycastWithScenario(hits)) ColLeft = true;
@@ -411,7 +423,7 @@ public class PlayerController : MonoBehaviour
 
 			if (looking == Direction.RIGHT)
 			{
-				Pos = new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z);
+				Pos = new Vector3(transform.position.x + 0.5f, transform.position.y + 0.25f, transform.position.z);
 				Dir = transform.right;
 				RaycastHit[] hits = Physics.RaycastAll(Pos, Dir, 1f);
 				if (checkRaycastWithScenario(hits)) ColRight = true;
@@ -419,7 +431,7 @@ public class PlayerController : MonoBehaviour
 
 			if (looking == Direction.FRONT)
 			{
-				Pos = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.5f);
+				Pos = new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z + 0.5f);
 				Dir = transform.forward;
 				RaycastHit[] hits = Physics.RaycastAll(Pos, Dir, 1f);
 				if (checkRaycastWithScenario(hits)) ColUp = true;
@@ -427,7 +439,7 @@ public class PlayerController : MonoBehaviour
 
 			if (looking == Direction.REAR)
 			{
-				Pos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.5f);
+				Pos = new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z - 0.5f);
 				Dir = -transform.forward;
 				RaycastHit[] hits = Physics.RaycastAll(Pos, Dir, 1f);
 				if (checkRaycastWithScenario(hits)) ColDown = true;

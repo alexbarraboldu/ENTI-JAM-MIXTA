@@ -89,6 +89,7 @@ MonoBehaviour:
   isOnFloor: 0
   isUnderDome: 0
   anim: {fileID: 0}
+  animWheels: []
   isRear: 0
 --- !u!1001 &6149716738562726891
 PrefabInstance:

@@ -12,10 +12,13 @@ public class PortalController : MonoBehaviour
     public bool cancelTeleport;
     private CamTargetController camTarget;
 
+   // private Rigidbody rigidbody;
+
     public bool alreadyTeleported { get; set; }
 
     void Start()
     {
+     //   rigidbody = GetComponent<Rigidbody>();
         camTarget = GameObject.Find("CamTarget").GetComponent<CamTargetController>();
         opController = otherPortal.GetComponent<PortalController>();
         cancelTeleport = false;
@@ -34,8 +37,21 @@ public class PortalController : MonoBehaviour
         {
             if (!cancelTeleport)
             {
+                //other.gameObject.transform.position = new Vector3(otherPortal.transform.position.x + 1f, otherPortal.transform.position.y, otherPortal.transform.position.z + 1f);
                 other.gameObject.transform.position = otherPortal.transform.position;
+
+
+                //PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
+
                 other.gameObject.GetComponent<PlayerController>().hightOffset = otherPortal.transform.position.y;
+                other.gameObject.GetComponent<PlayerController>().xToGo = otherPortal.transform.position.x;
+                other.gameObject.GetComponent<PlayerController>().zToGo = otherPortal.transform.position.z;
+
+                other.gameObject.GetComponent<PlayerController>().arrived = true;
+                other.gameObject.GetComponent<PlayerController>().moving = false;
+                other.gameObject.GetComponent<PlayerController>().walking = false;
+                other.gameObject.GetComponent<PlayerController>().isOnFloor = true;
+
                 alreadyTeleported = true;
 
 
