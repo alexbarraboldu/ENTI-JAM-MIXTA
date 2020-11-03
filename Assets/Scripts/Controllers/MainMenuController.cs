@@ -49,7 +49,7 @@ public class MainMenuController : MonoBehaviour
 
     public void LoadLevel()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(2);
     }
 
     public void ExitGame()

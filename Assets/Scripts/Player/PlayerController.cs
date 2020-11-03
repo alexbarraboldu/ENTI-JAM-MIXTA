@@ -558,6 +558,16 @@ public class PlayerController : MonoBehaviour
 			Destroy(other.gameObject);
 			GameManager.Instance.diamonds += 1;
         }
-    }
+
+		if (other.gameObject.tag == "Power")
+		{
+			Debug.Log("Power");
+			Destroy(other.gameObject);
+
+			float powerEnergy = other.gameObject.GetComponent<PowerController>().energy;
+
+			LevelManager.Instance.energy += powerEnergy;
+		}
+	}
 
 }

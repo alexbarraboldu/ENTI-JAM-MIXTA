@@ -5,50 +5,74 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-    private GameManager gm;
+    // PLAYER VARIABLES
+    public float maxEnergy = 100f;
+    public float energy = 0f;
+    public float energyLoss = 1f;
+    public float energyRegen = 2f;
+
+    //  GAME ELEMENTS
+    public int maxDiamonds = 3;
+    public int diamonds = 0;
+
     private Slider energySlider;
     private PlayerController player;
 
-    private float energyLoss;
-    private float energyRegen;
-
     private float time = 0f;
-    public int energy;
 
     private float nextActionTime = 0.0f;
     private float period = 1.0f;
 
+    //  INSTANCE GAME MANAGER
     public GameObject fillArea;
+    public static LevelManager Instance { get; private set; }
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Debug.Log("Warning: multiple " + this + " in scene!");
+        }
+    }
 
-    // Start is called before the first frame update
     void Start()
     {
-        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         energySlider = GameObject.Find("EnergySlider").GetComponent<Slider>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
-        energyLoss = gm.energyLoss;
-        energyRegen = gm.energyRegen;
+        energy = maxEnergy;
 
-        energySlider.maxValue = gm.maxEnergy;
-        energySlider.value = energySlider.maxValue;
+        energySlider.maxValue = maxEnergy;
+        energySlider.value = energy;
 
         SoundManager.Instance.playingNow = Utils.PlayingNow.INGAME;
     }
 
-    
-
-    // Update is called once per frame
     void Update()
     {
-        if (energySlider.value<=0)
+        if (player == null)
         {
-            //TODO
+            GameManager.Instance.isDead = true;
+            return;
+        }
 
+        EnergyControl();
+    }
+
+    void EnergyControl()
+    {
+        if (energySlider.value <= 0)
+        {
             if (Time.time > nextActionTime)
             {
                 nextActionTime += period;
                 Debug.Log("sin energia");
+
+                Destroy(player.gameObject, 2f);
             }
             fillArea.SetActive(false);
             return;
@@ -58,28 +82,20 @@ public class LevelManager : MonoBehaviour
         {
             if (energySlider.maxValue != energySlider.value)
             {
-                energySlider.value += energyRegen;
+                energy += energyRegen;
             }
-        } 
+        }
         else
         {
-            energySlider.value -= energyLoss;
+            energy -= energyLoss;
         }
 
-        //Debug.Log("Energy: " + energySlider.value);
-
-        time += Time.deltaTime;
-        energy = Mathf.FloorToInt(time % 60);
-        //  UPDATE EVERY SECOND
-        if(Time.time > nextActionTime)
+        if (energy > maxEnergy)
         {
-            nextActionTime += period;
-            //Debug.Log(energy);
+            energy = maxEnergy;
         }
 
-
-        gm.energy = energySlider.value;
+        energySlider.value = energy;
     }
 
-    
 }

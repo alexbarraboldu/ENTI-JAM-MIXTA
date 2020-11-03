@@ -7,10 +7,7 @@ public class GameManager : MonoBehaviour
 {
 
     // PLAYER VARIABLES
-    public float maxEnergy = 10f;
-    public float energy = 0f;
-    public float energyLoss = 1f;
-    public float energyRegen = 2f;
+    public bool isDead = false;
 
     //  GAME ELEMENTS
     public int diamonds = 0;
@@ -35,14 +32,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -66,6 +55,10 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(4);
         }
 
-
+        if (isDead)
+        {
+            SceneManager.LoadScene(1);
+            isDead = false;
+        }
     }
 }

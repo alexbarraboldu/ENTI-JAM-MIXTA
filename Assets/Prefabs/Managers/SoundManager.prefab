@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6026696092195353584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6026696092195353587}
+  - component: {fileID: 6026696092195353586}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6026696092195353587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6026696092195353584}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13.505937, y: 29.479588, z: 65.69633}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6026696092195353586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6026696092195353584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c457707ab6c113e40bfc6c5fa87c9468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxClips:
+  - name: 0
+    clip: {fileID: 8300000, guid: b0c799c96e6bd0b40b0583e4cb015f34, type: 3}
+    audioType: 1
+    pitch: 1
+    randomPitch: 0
+    specialEffect: 0
+  - name: 1
+    clip: {fileID: 8300000, guid: 98391c81c0112cc4e8eeb5408810e900, type: 3}
+    audioType: 2
+    pitch: 1
+    randomPitch: 0
+    specialEffect: 0
+  voiceClips: []
+  musicClips:
+  - name: InGame
+    clip: {fileID: 8300000, guid: f259d0d4b96eee14bac5aa26a852a3b0, type: 3}
+    audioType: 2
+    pitch: 1
+    randomPitch: 0
+    musicZone: 1
+  - name: Menu
+    clip: {fileID: 8300000, guid: 768d3f96a70718640832fea73548c020, type: 3}
+    audioType: 2
+    pitch: 1
+    randomPitch: 0
+    musicZone: 2
+  playingNow: 0
