@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
 	public float delta;
 
 	public bool isOnFloor;
+	public bool isUnderDome;
 
 	//	ANIMATOR
 	public Animator anim;
@@ -365,6 +366,11 @@ public class PlayerController : MonoBehaviour
 				{
 					Debug.Log("Hit: Portal"); return false;
 				}
+
+				if (hit.collider.gameObject.tag == "EnergyDome")
+                {
+					return false;
+                }
 
 				if (hit.collider.gameObject.tag == "Floor")
 				{
