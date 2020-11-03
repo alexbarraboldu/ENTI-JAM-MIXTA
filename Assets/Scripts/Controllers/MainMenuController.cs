@@ -27,13 +27,20 @@ public class MainMenuController : MonoBehaviour
         
     }
 
+    public void PlayStartSound()
+    {
+        SoundManager.Instance.PlayAudio(Utils.AudioType.EFFECT, "StartGame");
+    }
+
+    public void PlayButtonSound()
+    {
+        SoundManager.Instance.PlayAudio(Utils.AudioType.EFFECT, "Click");
+    }
+
     public void onChangeEffects()
     {
         SoundManager.Instance.SetSfxVolume(sfxSlider.value);
-        SoundManager.Instance.PlayAudio(Utils.AudioType.EFFECT, "0");
-        //SoundManager.Instance.SetVolumen(Utils.AudioType.EFFECT, effectsSlider.value);
-        //SoundManager.Instance.PlayAudio("Bounce1");
-        //SoundManager.Instance.SFXVol = effectsSlider.value;
+        SoundManager.Instance.PlayAudio(Utils.AudioType.EFFECT, "Danger");
     }
 
 
@@ -89,6 +96,8 @@ public class MainMenuController : MonoBehaviour
     {
         optionsBlock.SetActive(false);
         creditsBlock.SetActive(false);
+
+        SoundManager.Instance.StopMusic();
         SoundManager.Instance.playingNow = Utils.PlayingNow.MAINMENU;
     }
 

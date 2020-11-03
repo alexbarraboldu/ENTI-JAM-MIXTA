@@ -37,6 +37,10 @@ public class PortalController : MonoBehaviour
                 other.gameObject.GetComponent<PlayerController>().hightOffset = otherPortal.transform.position.y;
                 alreadyTeleported = true;
 
+
+                //PlaySound
+                SoundManager.Instance.PlaySfx("Teleport");
+
                 //Set new position of CamTarget
                 camTarget.SetTarget(otherPortal.transform);
             }
