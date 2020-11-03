@@ -563,6 +563,9 @@ public class PlayerController : MonoBehaviour
 		if (other.gameObject.tag == "Power")
 		{
 			Debug.Log("Power");
+
+			SoundManager.Instance.PlaySfx("Power");
+
 			Destroy(other.gameObject);
 
 			float powerEnergy = other.gameObject.GetComponent<PowerController>().energy;
