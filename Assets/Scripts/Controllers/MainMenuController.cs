@@ -89,6 +89,7 @@ public class MainMenuController : MonoBehaviour
     {
         optionsBlock.SetActive(false);
         creditsBlock.SetActive(false);
+        SoundManager.Instance.playingNow = Utils.PlayingNow.MAINMENU;
     }
 
 }

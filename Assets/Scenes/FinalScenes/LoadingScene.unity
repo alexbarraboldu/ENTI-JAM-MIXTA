@@ -349,12 +349,18 @@ MonoBehaviour:
     specialEffect: 0
   voiceClips: []
   musicClips:
-  - name: 
-    clip: {fileID: 0}
-    audioType: 0
-    pitch: 0
+  - name: InGame
+    clip: {fileID: 8300000, guid: f259d0d4b96eee14bac5aa26a852a3b0, type: 3}
+    audioType: 2
+    pitch: 1
     randomPitch: 0
-    musicZone: 0
+    musicZone: 1
+  - name: Menu
+    clip: {fileID: 8300000, guid: 768d3f96a70718640832fea73548c020, type: 3}
+    audioType: 2
+    pitch: 1
+    randomPitch: 0
+    musicZone: 2
   playingNow: 0
 --- !u!1 &1944737447
 GameObject:
