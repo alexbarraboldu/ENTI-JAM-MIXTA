@@ -31,8 +31,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
 		rb2d = GetComponent<Rigidbody>();
-		xToGo = 0;
-		zToGo = 0;
+		//xToGo = 0;
+		//zToGo = 0;
 		direction = Direction.NONE;
 		moving = false;
 		walking = false;
@@ -233,8 +233,6 @@ public class PlayerController : MonoBehaviour
 			int wheresLooking = (int)looking;
 			if (wheresLooking != 0) wheresLooking -= 1;
 
-
-
             switch (looking)
             {
                 case Direction.NONE:
@@ -257,7 +255,7 @@ public class PlayerController : MonoBehaviour
 
             isOnFloor = false;
 			isCollisionVertical(xToGo, zToGo);
-			if (isCollisionHorizontal(xToGo, zToGo) || isOnFloor == false)
+			if (isCollisionHorizontal(xToGo, zToGo) || isCollisionVertical(xToGo, zToGo) || isOnFloor == false)
 			{
 				moving = false;
 				walking = false;
@@ -269,7 +267,7 @@ public class PlayerController : MonoBehaviour
 			//ESTO TE COLOCA DE VUELTA AL GRID SI EN ALGUN MOMENTO TE SALIERAS
 			if (Mathf.FloorToInt((rb2d.position.x % 1) * 10) != 5 && Mathf.FloorToInt(Mathf.Repeat(rb2d.position.z, 1.0f) * 10) != 5)
             {
-                Debug.Log("PLAYER OUR OF GRID");
+                Debug.Log("PLAYER OUT OF GRID");
 
                 const float p = 0.5f;
                 const float n = -0.5f;
@@ -384,29 +382,7 @@ public class PlayerController : MonoBehaviour
 			default:
 				break;
 		}
-
-		switch (direction)
-		{
-            case Direction.NONE:
-                //sanim.SetInteger("Direction", 0);
-                break;
-            //case Direction.FRONT:
-            //	anim.SetInteger("Direction", 1);
-            //	break;
-            case Direction.REAR:
-					anim.SetTrigger("Rear");
-					//isRear = true;
-				break;
-			//case Direction.LEFT:
-			//	anim.SetInteger("Direction", 3);
-			//	break;
-			//case Direction.RIGHT:
-			//	anim.SetInteger("Direction", 4);
-			//	break;
-			default:
-				break;
-		}
-	}
+    }
 
 	private bool isCollisionHorizontal(float _x, float _Z)
 	{
@@ -430,7 +406,7 @@ public class PlayerController : MonoBehaviour
 			{
 				Pos = new Vector3(transform.position.x - 0.5f, transform.position.y, transform.position.z);
 				Dir = -transform.right;
-				RaycastHit[] hits = Physics.RaycastAll(Pos, Dir, 0.5f);
+				RaycastHit[] hits = Physics.RaycastAll(Pos, Dir, 1f);
 				if (checkRaycastWithScenario(hits)) ColLeft = true;
 			}
 
@@ -438,7 +414,7 @@ public class PlayerController : MonoBehaviour
 			{
 				Pos = new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z);
 				Dir = transform.right;
-				RaycastHit[] hits = Physics.RaycastAll(Pos, Dir, 0.5f);
+				RaycastHit[] hits = Physics.RaycastAll(Pos, Dir, 1f);
 				if (checkRaycastWithScenario(hits)) ColRight = true;
 			}
 
@@ -446,7 +422,7 @@ public class PlayerController : MonoBehaviour
 			{
 				Pos = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.5f);
 				Dir = transform.forward;
-				RaycastHit[] hits = Physics.RaycastAll(Pos, Dir, 0.5f);
+				RaycastHit[] hits = Physics.RaycastAll(Pos, Dir, 1f);
 				if (checkRaycastWithScenario(hits)) ColUp = true;
 			}
 
@@ -454,7 +430,7 @@ public class PlayerController : MonoBehaviour
 			{
 				Pos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.5f);
 				Dir = -transform.forward;
-				RaycastHit[] hits = Physics.RaycastAll(Pos, Dir, 0.5f);
+				RaycastHit[] hits = Physics.RaycastAll(Pos, Dir, 1f);
 				if (checkRaycastWithScenario(hits)) ColDown = true;
 			}
 
@@ -487,28 +463,28 @@ public class PlayerController : MonoBehaviour
 			{
 				Pos = new Vector3(transform.position.x - 1f, transform.position.y + 0.5f, transform.position.z);
 				RaycastHit[] hits = Physics.RaycastAll(Pos, Dir, 1.5f);
-				if (checkRaycastWithScenario(hits)) ColLeft = true;
+				if (checkRaycastWithScenario(hits, true)) ColLeft = true;
 			}
 
 			if (looking == Direction.RIGHT)
 			{
 				Pos = new Vector3(transform.position.x + 1f, transform.position.y + 0.5f, transform.position.z);
 				RaycastHit[] hits = Physics.RaycastAll(Pos, Dir, 1.5f);
-				if (checkRaycastWithScenario(hits)) ColRight = true;
+				if (checkRaycastWithScenario(hits, true)) ColRight = true;
 			}
 
 			if (looking == Direction.FRONT)
 			{
 				Pos = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z + 1f);
 				RaycastHit[] hits = Physics.RaycastAll(Pos, Dir, 1.5f);
-				if (checkRaycastWithScenario(hits)) ColUp = true;
+				if (checkRaycastWithScenario(hits, true)) ColUp = true;
 			}
 
 			if (looking == Direction.REAR)
 			{
 				Pos = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z - 1f);
 				RaycastHit[] hits = Physics.RaycastAll(Pos, Dir, 1.5f);
-				if (checkRaycastWithScenario(hits)) ColDown = true;
+				if (checkRaycastWithScenario(hits, true)) ColDown = true;
 			}
 
 			Debug.DrawRay(Pos, Dir, Color.red);
@@ -518,33 +494,60 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	private bool checkRaycastWithScenario(RaycastHit[] hits)
+	private bool checkRaycastWithScenario(RaycastHit[] hits, bool checkFloor = false)
 	{
+		List<bool> collisionList = new List<bool>();
+		
 		foreach (RaycastHit hit in hits)
 		{
 			if (hit.collider != null)
 			{
-				if (hit.collider.gameObject.tag == "Portal")
-				{
-					return false;
-				}
+				Debug.Log(hit.collider.gameObject.tag);
 
-				if (hit.collider.gameObject.tag == "EnergyDome")
-                {
-					return false;
-                }
 
-				if (hit.collider.gameObject.tag == "Floor")
+				if (checkFloor == false)
 				{
-					isOnFloor = true;
-					return false;
-				}
-				else
-                {
-					return true;
-                }
+
+                    if (hit.collider.gameObject.tag == "Portal")
+                    {
+						collisionList.Add(false);
+					}
+
+					if (hit.collider.gameObject.tag == "EnergyDome")
+                    {
+						collisionList.Add(false);
+					}
+
+					if (hit.collider.gameObject.tag == "Wall")
+					{
+						collisionList.Add(true);
+					}
+				}			
+				//	CHECK FLOOR
+				else 
+				{
+					if (hit.collider.gameObject.tag == "Floor")
+					{
+						isOnFloor = true;
+						collisionList.Add(false);
+					}
+					//else
+					//{
+					//	collisionList.Add(true);
+					//	//continue;
+					//}
+				}	
 			}
 		}
+
+		foreach (bool col in collisionList)
+		{
+			if (col)
+			{
+				return true;
+			}
+		}
+
 		return false;
 	}
 

@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
 {
 
     // PLAYER VARIABLES
-    public float energy = 1f;
+    public float maxEnergy = 10f;
+    public float energy = 0f;
     public float energyLoss = 1f;
     public float energyRegen = 2f;
 

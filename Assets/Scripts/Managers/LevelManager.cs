@@ -13,8 +13,12 @@ public class LevelManager : MonoBehaviour
     private float energyRegen;
 
     private float time = 0f;
-    private int energy;
+    public int energy;
 
+    private float nextActionTime = 0.0f;
+    private float period = 1.0f;
+
+    public GameObject fillArea;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +30,7 @@ public class LevelManager : MonoBehaviour
         energyLoss = gm.energyLoss;
         energyRegen = gm.energyRegen;
 
-        energySlider.maxValue = 10f;
+        energySlider.maxValue = gm.maxEnergy;
         energySlider.value = energySlider.maxValue;
 
         
@@ -37,17 +41,27 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(energySlider.value<=0)
+        if (energySlider.value<=0)
         {
             //TODO
-            Debug.Log("sin energia");
+
+            if (Time.time > nextActionTime)
+            {
+                nextActionTime += period;
+                Debug.Log("sin energia");
+            }
+            fillArea.SetActive(false);
             return;
         }
 
-        if(player.isUnderDome)
+        if (player.isUnderDome)
         {
-            energySlider.value += energyRegen;
-        } else
+            if (energySlider.maxValue != energySlider.value)
+            {
+                energySlider.value += energyRegen;
+            }
+        } 
+        else
         {
             energySlider.value -= energyLoss;
         }
@@ -55,13 +69,16 @@ public class LevelManager : MonoBehaviour
         //Debug.Log("Energy: " + energySlider.value);
 
         time += Time.deltaTime;
-
         energy = Mathf.FloorToInt(time % 60);
+        //  UPDATE EVERY SECOND
+        if(Time.time > nextActionTime)
+        {
+            nextActionTime += period;
+            //Debug.Log(energy);
+        }
 
-        Debug.LogWarning(energy);
 
-
-
+        gm.energy = energySlider.value;
     }
 
     
