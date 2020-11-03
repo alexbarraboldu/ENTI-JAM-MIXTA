@@ -24,7 +24,8 @@ public class EnergyDomeController : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             player.isUnderDome = true;
-            Debug.Log("Entrando dome");
+            SoundManager.Instance.PlaySfx("EnterDome");
+            Debug.Log("Entrando DOME");
         }
         
     }
@@ -34,7 +35,8 @@ public class EnergyDomeController : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             player.isUnderDome = false;
-            Debug.Log("Saliendo dome");
+            SoundManager.Instance.PlaySfx("ExitDome");
+            Debug.Log("Saliendo DOME");
         }
     }
 

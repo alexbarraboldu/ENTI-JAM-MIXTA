@@ -37,8 +37,11 @@ public static class Utils
     public enum SpecialEffect
     {
         NONE,
-        TYPE1,
-        TYPE2,
+        DANGER,
+        DIAMOND,
+        POWER,
+        TELEPORT,
+        DOME
     };
 
     public enum MusicZone

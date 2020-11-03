@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FinalScenes/MenuScene.unity
     guid: 3874d57fa3bd05b409d58e585c4c1004
+  - enabled: 1
+    path: Assets/Scenes/SergioMurilloTest2.unity
+    guid: a79c114f82782eb43bf323fc734d131f
   m_configObjects: {}

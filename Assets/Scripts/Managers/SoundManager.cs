@@ -436,7 +436,7 @@ public class SoundManager : MonoBehaviour
         musicAudioSource.Stop();
     }
 
-    private void PlayMusic(Utils.PlayingNow musicZone)
+    public void PlayMusic(Utils.PlayingNow musicZone)
     {
         //Paramos la música que esté sonando y liberamos el clip. Hacemos una parada en caso de querer llamar esta función fuera del Update.
         musicAudioSource.Stop();
@@ -498,9 +498,9 @@ public class SoundManager : MonoBehaviour
         musicAudioSource = musicSource.GetComponent<AudioSource>();
 
 
-        masterVolume = 1f;
+        masterVolume = 0.75f;
         musicVolume = 0.5f;
-        sfxVolume = 1f;
+        sfxVolume = 0.5f;
 
 
         playingNow = Utils.PlayingNow.NONE;

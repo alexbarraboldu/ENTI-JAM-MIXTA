@@ -33,7 +33,9 @@ public class LevelManager : MonoBehaviour
         energySlider.maxValue = gm.maxEnergy;
         energySlider.value = energySlider.maxValue;
 
+        SoundManager.Instance.StopMusic();
         SoundManager.Instance.playingNow = Utils.PlayingNow.INGAME;
+
     }
 
     

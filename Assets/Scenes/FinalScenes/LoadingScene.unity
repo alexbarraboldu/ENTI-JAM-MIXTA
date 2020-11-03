@@ -272,9 +272,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7290fbb108372214caa45fa88425ddb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxEnergy: 10
   energy: 1
   energyLoss: 1
   energyRegen: 2
+  diamonds: 0
   cameraSensibility: 50
   zoomSensibility: 50
 --- !u!4 &1555802948
@@ -335,18 +337,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfxClips:
-  - name: 0
-    clip: {fileID: 8300000, guid: b0c799c96e6bd0b40b0583e4cb015f34, type: 3}
+  - name: Danger
+    clip: {fileID: 8300000, guid: e6ca6a11d6b2a2c43a2a6ebbae34cd29, type: 3}
+    audioType: 1
+    pitch: 1
+    randomPitch: 0.25
+    specialEffect: 1
+  - name: Click
+    clip: {fileID: 8300000, guid: e36a7cb6cfa4cb84eb08e8d92d129aa6, type: 3}
     audioType: 1
     pitch: 1
     randomPitch: 0
     specialEffect: 0
-  - name: 1
-    clip: {fileID: 8300000, guid: 98391c81c0112cc4e8eeb5408810e900, type: 3}
+  - name: StartGame
+    clip: {fileID: 8300000, guid: 8b2535297c663ae498b4dcb1f543a1c7, type: 3}
     audioType: 2
     pitch: 1
     randomPitch: 0
     specialEffect: 0
+  - name: Diamond
+    clip: {fileID: 8300000, guid: a38a8e6e59bddd44dbad2284fe3706bb, type: 3}
+    audioType: 1
+    pitch: 1.1
+    randomPitch: 0.2
+    specialEffect: 2
+  - name: Power
+    clip: {fileID: 8300000, guid: 7a9d8193688166849ad807c6561a1f4f, type: 3}
+    audioType: 1
+    pitch: 1
+    randomPitch: 0
+    specialEffect: 3
+  - name: Teleport
+    clip: {fileID: 8300000, guid: ac92e19e53975ba42ada1357d765937b, type: 3}
+    audioType: 1
+    pitch: 1
+    randomPitch: 0
+    specialEffect: 4
+  - name: ExitDome
+    clip: {fileID: 8300000, guid: 107365710942db4469e8b51bbfb73bf5, type: 3}
+    audioType: 1
+    pitch: 1
+    randomPitch: 0
+    specialEffect: 5
+  - name: EnterDome
+    clip: {fileID: 8300000, guid: 4cbc6d8b7578ede448a945fd9718a155, type: 3}
+    audioType: 1
+    pitch: 1
+    randomPitch: 0
+    specialEffect: 5
   voiceClips: []
   musicClips:
   - name: InGame

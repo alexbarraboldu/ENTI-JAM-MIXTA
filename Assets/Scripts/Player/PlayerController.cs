@@ -555,6 +555,7 @@ public class PlayerController : MonoBehaviour
 		if (other.gameObject.tag == "Diamond")
         {
 			Debug.Log("Diamond");
+			SoundManager.Instance.PlaySfx("Diamong");
 			Destroy(other.gameObject);
 			GameManager.Instance.diamonds += 1;
         }
