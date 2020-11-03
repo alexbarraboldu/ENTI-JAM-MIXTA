@@ -97,9 +97,9 @@ public class MainMenuController : MonoBehaviour
         optionsBlock.SetActive(false);
         creditsBlock.SetActive(false);
 
-        SoundManager.Instance.StopMusic();
+        
         SoundManager.Instance.playingNow = Utils.PlayingNow.MAINMENU;
-        SoundManager.Instance.PlayMusic(Utils.PlayingNow.MAINMENU);
+        SoundManager.Instance.StopMusic();
     }
 
 }
