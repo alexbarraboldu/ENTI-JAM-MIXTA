@@ -20,6 +20,10 @@ public class PlayerController : MonoBehaviour
 
 	public bool isOnFloor;
 
+	//	ANIMATOR
+	public Animator anim;
+	public bool isRear;
+
     void Start()
     {
 		rb2d = GetComponent<Rigidbody>();
@@ -29,12 +33,16 @@ public class PlayerController : MonoBehaviour
 		moving = false;
 		walking = false;
 		looking = Direction.NONE;
+
+		//	ANIMATOR
+		anim = GetComponentInChildren<Animator>();
 	}
 
 	void Update()
     {
 		delta = Time.deltaTime * 1000.0f;
 		PlayerMovement();
+		PlayerAnimation();
     }
 
 	void PlayerMovement()
@@ -42,6 +50,7 @@ public class PlayerController : MonoBehaviour
 		if (!moving)
 		{
 			direction = Direction.NONE;
+		//	anim.SetInteger("Direction", 0);
 			xToGo = rb2d.position.x;
 			zToGo = rb2d.position.z;
 
@@ -52,6 +61,7 @@ public class PlayerController : MonoBehaviour
 				zToGo += 1f;
 				moving = true;
 				walking = true;
+			//	anim.SetInteger("Direction", 1);
 			}
 			else if (Input.GetKey(KeyCode.S))
 			{
@@ -177,6 +187,61 @@ public class PlayerController : MonoBehaviour
                 rb2d.position = new Vector3(prevX, hightOffset, prevZ);
                 moving = false;
             }
+		}
+	}
+
+
+	private void PlayerAnimation()
+	{
+		if (!walking)
+		{
+			anim.SetBool("Moving", false);
+		}
+		else
+		{
+			anim.SetBool("Moving", true);
+		}
+		switch (looking)
+		{
+			case Direction.NONE:
+				anim.SetInteger("Direction", 0);
+				break;
+			case Direction.FRONT:
+				anim.SetInteger("Direction", 1);
+				break;
+			case Direction.REAR:
+				anim.SetInteger("Direction", 2);
+				break;
+			case Direction.LEFT:
+				anim.SetInteger("Direction", 3);
+				break;
+			case Direction.RIGHT:
+				anim.SetInteger("Direction", 4);
+				break;
+			default:
+				break;
+		}
+
+		switch (direction)
+		{
+            case Direction.NONE:
+                //sanim.SetInteger("Direction", 0);
+                break;
+            //case Direction.FRONT:
+            //	anim.SetInteger("Direction", 1);
+            //	break;
+            case Direction.REAR:
+					anim.SetTrigger("Rear");
+					//isRear = true;
+				break;
+			//case Direction.LEFT:
+			//	anim.SetInteger("Direction", 3);
+			//	break;
+			//case Direction.RIGHT:
+			//	anim.SetInteger("Direction", 4);
+			//	break;
+			default:
+				break;
 		}
 	}
 
