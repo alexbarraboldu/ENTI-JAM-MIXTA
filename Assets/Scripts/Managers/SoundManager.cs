@@ -180,6 +180,8 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField]
     public Music[] musicClips;
+    public AudioClip clipMenu;
+    public AudioClip clipInGame;
 
     public void PlayMusic(string _name)
     {
@@ -445,11 +447,11 @@ public class SoundManager : MonoBehaviour
         switch (musicZone)
         {
             case Utils.PlayingNow.MAINMENU:
-                SelectClip(musicClips, ref lastMainMenuMusic);
+                musicAudioSource.clip = musicClips[1].clip;
                 break;
 
             case Utils.PlayingNow.INGAME:
-                SelectClip(musicClips, ref lastGameMusic);
+                musicAudioSource.clip = musicClips[0].clip;
                 break;
         }
 

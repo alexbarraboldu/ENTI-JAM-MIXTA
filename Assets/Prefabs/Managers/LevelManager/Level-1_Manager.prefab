@@ -46,7 +46,7 @@ MonoBehaviour:
   maxEnergy: 100
   energy: 0
   energyLoss: 0.02
-  energyRegen: 0.03
+  energyRegen: 0.1
   maxDiamonds: 3
   diamonds: 0
   fillArea: {fileID: 1643777928633012667, guid: 0a208fe2a45a32b40963443e93a1cf23,

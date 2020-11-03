@@ -7,6 +7,7 @@ public class PortalController : MonoBehaviour
 {
     public GameObject otherPortal;
     private PortalController opController;
+    public GameObject target;
 
     public bool cancelTeleport;
     private CamTargetController camTarget;
@@ -42,7 +43,9 @@ public class PortalController : MonoBehaviour
                 SoundManager.Instance.PlaySfx("Teleport");
 
                 //Set new position of CamTarget
-                camTarget.SetTarget(otherPortal.transform);
+                camTarget.SetTarget(target.transform);
+
+
             }
         }
     }
