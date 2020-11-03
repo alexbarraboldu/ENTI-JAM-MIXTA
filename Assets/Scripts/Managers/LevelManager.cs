@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
     private PlayerController player;
 
     //  INSTANCE GAME MANAGER
-    public GameObject fillArea;
+    
     public static LevelManager Instance { get; private set; }
     private void Awake()
     {
