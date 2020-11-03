@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
     public float energyRegen = 2f;
 
     //  GAME ELEMENTS
-    public int maxDiamonds = 0;
+    private int maxDiamonds = 0;
     public int diamonds = 0;
 
     private Slider energySlider;
@@ -56,12 +56,7 @@ public class LevelManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            energy = 1f;
-        }
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            energy = 70f;
+            energy = 100f;
         }
 
         if (diamonds >= maxDiamonds)

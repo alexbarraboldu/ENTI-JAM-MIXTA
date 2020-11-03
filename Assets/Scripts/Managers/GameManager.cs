@@ -45,13 +45,13 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(3);
         }
-
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             SceneManager.LoadScene(4);
         }
-
-        
-
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            SceneManager.LoadScene(5);
+        }
     }
 }
