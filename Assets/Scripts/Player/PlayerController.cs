@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
 	public Animator anim;
 	public bool isRear;
 
+	//	MOVEMENT
+	public List<KeyCode[]> keyCodes;
+
     void Start()
     {
 		rb2d = GetComponent<Rigidbody>();
@@ -33,10 +36,24 @@ public class PlayerController : MonoBehaviour
 		direction = Direction.NONE;
 		moving = false;
 		walking = false;
-		looking = Direction.NONE;
+		looking = Direction.FRONT;
+		arrived = true;
 
 		//	ANIMATOR
 		anim = GetComponentInChildren<Animator>();
+
+		//	MOVEMENT
+		KeyCode[] KC_Front = { KeyCode.W, KeyCode.S , KeyCode.A , KeyCode.D };
+		KeyCode[] KC_Rear = { KeyCode.S, KeyCode.W , KeyCode.D, KeyCode.A };
+		KeyCode[] KC_Left = { KeyCode.D, KeyCode.A, KeyCode.W, KeyCode.S };
+		KeyCode[] KC_Right = { KeyCode.A, KeyCode.D, KeyCode.S, KeyCode.W };
+
+		keyCodes = new List<KeyCode[]>();
+
+		keyCodes.Add(KC_Front);
+		keyCodes.Add(KC_Rear);
+		keyCodes.Add(KC_Left);
+		keyCodes.Add(KC_Right);
 	}
 
 	void Update()
@@ -46,54 +63,199 @@ public class PlayerController : MonoBehaviour
 		PlayerAnimation();
     }
 
+	void moveFront(KeyCode[] keyCodes)
+    {
+		if (Input.GetKey(keyCodes[0]))	//	FRONT
+		{
+			direction = Direction.FRONT;
+			looking = Direction.FRONT;
+			zToGo += 1f;
+			moving = true;
+			walking = true;
+		}
+		else if (Input.GetKeyDown(keyCodes[1]))	//	REAR
+		{
+			direction = Direction.REAR;
+			looking = Direction.REAR;
+			zToGo -= 1f;
+			moving = true;
+			walking = true;
+		}
+		else if (Input.GetKeyDown(keyCodes[2])) //	LEFT
+		{
+			direction = Direction.LEFT;
+			looking = Direction.LEFT;
+			xToGo -= 1f;
+			moving = true;
+			walking = true;
+		}
+		else if (Input.GetKeyDown(keyCodes[3]))	//	RIGHT
+		{
+			direction = Direction.RIGHT;
+			looking = Direction.RIGHT;
+			xToGo += 1f;
+			moving = true;
+			walking = true;
+		}
+		else
+		{
+			walking = false;
+		}
+	}
+
+	void moveRear(KeyCode[] keyCodes)
+	{
+		if (Input.GetKeyDown(keyCodes[0]))	//	REAR
+		{
+			direction = Direction.FRONT;
+			looking = Direction.FRONT;
+			zToGo += 1f;
+			moving = true;
+			walking = true;
+		}
+		else if (Input.GetKey(keyCodes[1]))	//	FRONT
+		{
+			direction = Direction.REAR;
+			looking = Direction.REAR;
+			zToGo -= 1f;
+			moving = true;
+			walking = true;
+		}
+		else if (Input.GetKeyDown(keyCodes[2]))	//	RIGHT
+		{
+			direction = Direction.LEFT;
+			looking = Direction.LEFT;
+			xToGo -= 1f;
+			moving = true;
+			walking = true;
+		}
+		else if (Input.GetKeyDown(keyCodes[3])) //	LEFT
+		{
+			direction = Direction.RIGHT;
+			looking = Direction.RIGHT;
+			xToGo += 1f;
+			moving = true;
+			walking = true;
+		}
+		else
+		{
+			walking = false;
+		}
+	}
+
+	void moveLeft(KeyCode[] keyCodes)
+	{
+		if (Input.GetKeyDown(keyCodes[0]))	//	RIGHT
+		{
+			direction = Direction.FRONT;
+			looking = Direction.FRONT;
+			zToGo += 1f;
+			moving = true;
+			walking = true;
+		}
+		else if (Input.GetKeyDown(keyCodes[1]))	//	LEFT
+		{	
+			direction = Direction.REAR;
+			looking = Direction.REAR;
+			zToGo -= 1f;
+			moving = true;
+			walking = true;
+		}
+		else if (Input.GetKey(keyCodes[2]))	//	FRONT
+		{
+			direction = Direction.LEFT;
+			looking = Direction.LEFT;
+			xToGo -= 1f;
+			moving = true;
+			walking = true;
+		}
+		else if (Input.GetKeyDown(keyCodes[3]))	//	REAR
+		{
+			direction = Direction.RIGHT;
+			looking = Direction.RIGHT;
+			xToGo += 1f;
+			moving = true;
+			walking = true;
+		}
+		else
+		{
+			walking = false;
+		}
+	}
+
+	void moveRight(KeyCode[] keyCodes)
+	{ 
+		if (Input.GetKeyDown(keyCodes[0]))	//	LEFT
+		{
+			direction = Direction.FRONT;
+			looking = Direction.FRONT;
+			zToGo += 1f;
+			moving = true;
+			walking = true;
+		}
+		else if (Input.GetKeyDown(keyCodes[1]))	//	RIGHT
+		{
+			direction = Direction.REAR;
+			looking = Direction.REAR;
+			zToGo -= 1f;
+			moving = true;
+			walking = true;
+		}
+		else if (Input.GetKeyDown(keyCodes[2]))	//	REAR
+		{
+			direction = Direction.LEFT;
+			looking = Direction.LEFT;
+			xToGo -= 1f;
+			moving = true;
+			walking = true;
+		}
+		else if (Input.GetKey(keyCodes[3]))	//	FRONT
+		{
+			direction = Direction.RIGHT;
+			looking = Direction.RIGHT;
+			xToGo += 1f;
+			moving = true;
+			walking = true;
+		}
+		else
+		{
+			walking = false;
+		}
+	}
+
 	void PlayerMovement()
 	{
 		if (!moving)
 		{
 			direction = Direction.NONE;
-		//	anim.SetInteger("Direction", 0);
 			xToGo = rb2d.position.x;
 			zToGo = rb2d.position.z;
+			int wheresLooking = (int)looking;
+			if (wheresLooking != 0) wheresLooking -= 1;
 
-			if (Input.GetKey(KeyCode.W))
-			{
-				direction = Direction.FRONT;
-				looking = Direction.FRONT;
-				zToGo += 1f;
-				moving = true;
-				walking = true;
-			//	anim.SetInteger("Direction", 1);
-			}
-			else if (Input.GetKey(KeyCode.S))
-			{
-				direction = Direction.REAR;
-				looking = Direction.REAR;
-				zToGo -= 1f;
-				moving = true;
-				walking = true;
-			}
-			else if (Input.GetKey(KeyCode.A))
-			{
-				direction = Direction.LEFT;
-				looking = Direction.LEFT;
-				xToGo -= 1f;
-				moving = true;
-				walking = true;
-			}
-			else if (Input.GetKey(KeyCode.D))
-			{
-				direction = Direction.RIGHT;
-				looking = Direction.RIGHT;
-				xToGo += 1f;
-				moving = true;
-				walking = true;
-			}
-			else
-			{
-				walking = false;
-			}
 
-			isOnFloor = false;
+
+            switch (looking)
+            {
+                case Direction.NONE:
+                    break;
+                case Direction.FRONT:
+					moveFront(keyCodes[wheresLooking]);
+                    break;
+                case Direction.REAR:
+					moveRear(keyCodes[wheresLooking]);
+					break;
+                case Direction.LEFT:
+					moveLeft(keyCodes[wheresLooking]);
+					break;
+                case Direction.RIGHT:
+					moveRight(keyCodes[wheresLooking]);
+					break;
+                default:
+                    break;
+            }
+
+            isOnFloor = false;
 			isCollisionVertical(xToGo, zToGo);
 			if (isCollisionHorizontal(xToGo, zToGo) || isOnFloor == false)
 			{
@@ -364,7 +526,7 @@ public class PlayerController : MonoBehaviour
 			{
 				if (hit.collider.gameObject.tag == "Portal")
 				{
-					Debug.Log("Hit: Portal"); return false;
+					return false;
 				}
 
 				if (hit.collider.gameObject.tag == "EnergyDome")
@@ -374,7 +536,6 @@ public class PlayerController : MonoBehaviour
 
 				if (hit.collider.gameObject.tag == "Floor")
 				{
-					/*Debug.Log("Hit: Floor");*/
 					isOnFloor = true;
 					return false;
 				}
@@ -386,7 +547,5 @@ public class PlayerController : MonoBehaviour
 		}
 		return false;
 	}
-
-
 
 }
