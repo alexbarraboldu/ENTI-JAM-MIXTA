@@ -5,10 +5,25 @@ using UnityEngine;
 public class CamTargetController : MonoBehaviour
 {
     //TODO Trigger zone, change target.
-    public Transform target;
+    private Transform target;
     [Range(0f, 1f)]
     public float smoothTime = 0.3F;
     public Vector3 velocity = Vector3.zero;
+
+    public Transform GetTarget()
+    {
+        return target.transform;
+    }
+
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+    }
+
+    private void Start()
+    {
+        target = transform;
+    }
 
     void FixedUpdate()
     {

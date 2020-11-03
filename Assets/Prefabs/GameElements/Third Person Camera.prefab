@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3138960931491104682}
   - component: {fileID: 3138960931491104680}
   - component: {fileID: 3138960931491104683}
-  - component: {fileID: 3138960931491104681}
   m_Layer: 0
   m_Name: Third Person Camera
   m_TagString: Untagged
@@ -150,36 +149,6 @@ MonoBehaviour:
   - {fileID: 3138960933210543751}
   - {fileID: 3138960931555771680}
   - {fileID: 3138960931757666371}
---- !u!114 &3138960931491104681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3138960931491104684}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_CollideAgainst:
-    serializedVersion: 2
-    m_Bits: 16
-  m_IgnoreTag: Player
-  m_TransparentLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_MinimumDistanceFromTarget: 0.1
-  m_AvoidObstacles: 1
-  m_DistanceLimit: 0
-  m_MinimumOcclusionTime: 0
-  m_CameraRadius: 0.1
-  m_Strategy: 0
-  m_MaximumEffort: 4
-  m_SmoothingTime: 0
-  m_Damping: 0.6
-  m_DampingWhenOccluded: 0.6
-  m_OptimalTargetDistance: 0
 --- !u!1 &3138960931555771681
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 6.033283, z: -15.047806}
+  m_FollowOffset: {x: 0, y: 6.033283, z: -24.92886}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -437,7 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 6.033283, z: -15.047806}
+  m_FollowOffset: {x: 0, y: 6.033283, z: -24.92886}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -636,7 +605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 6.033283, z: -15.047806}
+  m_FollowOffset: {x: 0, y: 6.033283, z: -24.92886}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -788,8 +757,6 @@ GameObject:
   - component: {fileID: 3065075651988688179}
   - component: {fileID: 8990563161425348411}
   - component: {fileID: 5259911804624372305}
-  - component: {fileID: 7363022243035877195}
-  - component: {fileID: 6742336188887701121}
   - component: {fileID: 1800367607954652177}
   m_Layer: 0
   m_Name: Sphere
@@ -837,53 +804,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bc40b57bf60964f93373b197f74493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!33 &7363022243035877195
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5034144232712106179}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &6742336188887701121
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5034144232712106179}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 73ce8880ee7db814ea34022d47466b09, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!54 &1800367607954652177
 Rigidbody:
   m_ObjectHideFlags: 0
