@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 748e7771cdfecac41989a626ec9d43d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.01
+  speed: 0.008
   hightOffset: 0.15
   rb2d: {fileID: 0}
   arrived: 0
@@ -73,6 +73,8 @@ MonoBehaviour:
   walking: 0
   delta: 0
   isOnFloor: 0
+  anim: {fileID: 0}
+  isRear: 0
 --- !u!1001 &6149716738562726891
 PrefabInstance:
   m_ObjectHideFlags: 0
