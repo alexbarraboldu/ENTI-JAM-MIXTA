@@ -59,6 +59,11 @@ public class LevelManager : MonoBehaviour
             energy = 1f;
         }
 
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            energy = 70f;
+        }
+
         if (diamonds >= maxDiamonds)
         {
             if (SceneManager.GetActiveScene().buildIndex == 3)
@@ -74,6 +79,13 @@ public class LevelManager : MonoBehaviour
         EnergyControl();
     }
 
+
+    private float timeDangerSound = 0f;
+    private float maxTimeDangerSound = 2f;
+    public float thresholdDanger0 = 80;
+    public float thresholdDanger1 = 50;
+    public float thresholdDanger2 = 25;
+
     void EnergyControl()
     {
         if (energySlider.value <= 0)
@@ -83,6 +95,40 @@ public class LevelManager : MonoBehaviour
 
             return;
         }
+
+
+        // PARTE AUDIO
+        if (!player.isUnderDome)
+        {
+            if (energySlider.value <= thresholdDanger0 && energySlider.value > thresholdDanger1)
+            {
+                timeDangerSound += Time.deltaTime;
+                if(timeDangerSound >= maxTimeDangerSound - 0.75f)
+                {
+                    timeDangerSound = 0;
+                    SoundManager.Instance.PlaySfxForcePitch("Danger", 1);
+                }
+            } 
+            else if (energySlider.value <= thresholdDanger1 && energySlider.value > thresholdDanger2)
+            {
+                timeDangerSound += Time.deltaTime;
+                if (timeDangerSound >= maxTimeDangerSound-0.25f)
+                {
+                    timeDangerSound = 0;
+                    SoundManager.Instance.PlaySfxForcePitch("Danger", 0.87f);
+                }
+            } 
+            else if (energySlider.value <= thresholdDanger2)
+            {
+                timeDangerSound += Time.deltaTime;
+                if (timeDangerSound >= maxTimeDangerSound)
+                {
+                    timeDangerSound = 0;
+                    SoundManager.Instance.PlaySfxForcePitch("Danger", 0.80f);
+                }
+            }
+        }
+        // PARTE LOGICA
 
         if (player.isUnderDome)
         {
