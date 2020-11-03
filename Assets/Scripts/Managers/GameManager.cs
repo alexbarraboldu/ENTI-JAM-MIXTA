@@ -7,10 +7,6 @@ public class GameManager : MonoBehaviour
 {
 
     // PLAYER VARIABLES
-    public bool isDead = false;
-
-    //  GAME ELEMENTS
-    public int diamonds = 0;
 
     // CONFIGURAR OPCIONES
     public float cameraSensibility = 50f;
@@ -55,10 +51,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(4);
         }
 
-        if (isDead)
-        {
-            SceneManager.LoadScene(1);
-            isDead = false;
-        }
+        
+
     }
 }

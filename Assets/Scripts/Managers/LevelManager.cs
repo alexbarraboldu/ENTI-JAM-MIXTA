@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
@@ -31,10 +32,9 @@ public class LevelManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this);
         }
         else
-        {
+        {            
             Debug.Log("Warning: multiple " + this + " in scene!");
         }
     }
@@ -44,22 +44,24 @@ public class LevelManager : MonoBehaviour
         energySlider = GameObject.Find("EnergySlider").GetComponent<Slider>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
+        diamonds = 0;
+
         energy = maxEnergy;
 
         energySlider.maxValue = maxEnergy;
         energySlider.value = energy;
 
         SoundManager.Instance.StopMusic();
-        SoundManager.Instance.playingNow = Utils.PlayingNow.INGAME;
+        SoundManager.Instance.playingNow = Utils.PlayingNow.INGAME;        
 
     }
 
     void Update()
     {
-        if (player == null)
+
+        if (Input.GetKeyDown(KeyCode.X))
         {
-            GameManager.Instance.isDead = true;
-            return;
+            energy = 1f;
         }
 
         EnergyControl();
@@ -69,13 +71,9 @@ public class LevelManager : MonoBehaviour
     {
         if (energySlider.value <= 0)
         {
-            if (Time.time > nextActionTime)
-            {
-                nextActionTime += period;
-                Debug.Log("sin energia");
 
-                Destroy(player.gameObject, 2f);
-            }
+            SceneManager.LoadScene(1);
+            
             fillArea.SetActive(false);
             return;
         }
