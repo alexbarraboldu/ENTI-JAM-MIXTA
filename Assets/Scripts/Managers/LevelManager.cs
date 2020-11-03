@@ -44,6 +44,8 @@ public class LevelManager : MonoBehaviour
         energySlider = GameObject.Find("EnergySlider").GetComponent<Slider>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
+        diamonds = 0;
+
         energy = maxEnergy;
 
         energySlider.maxValue = maxEnergy;

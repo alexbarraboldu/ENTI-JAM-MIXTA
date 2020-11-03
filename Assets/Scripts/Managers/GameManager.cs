@@ -9,9 +9,6 @@ public class GameManager : MonoBehaviour
     // PLAYER VARIABLES
     public bool isDead = false;
 
-    //  GAME ELEMENTS
-    public int diamonds = 0;
-
     // CONFIGURAR OPCIONES
     public float cameraSensibility = 50f;
     public float zoomSensibility = 50f;
