@@ -119,7 +119,7 @@ public class LevelManager : MonoBehaviour
             if (energySlider.value <= thresholdDanger0 && energySlider.value > thresholdDanger1)
             {
                 timeDangerSound += Time.deltaTime;
-                if(timeDangerSound >= maxTimeDangerSound - 0.75f)
+                if(timeDangerSound >= maxTimeDangerSound - 0.25f)
                 {
                     player.speed = 0.0045f;
                     timeDangerSound = 0;
@@ -129,7 +129,7 @@ public class LevelManager : MonoBehaviour
             else if (energySlider.value <= thresholdDanger1 && energySlider.value > thresholdDanger2)
             {
                 timeDangerSound += Time.deltaTime;
-                if (timeDangerSound >= maxTimeDangerSound-0.25f)
+                if (timeDangerSound >= maxTimeDangerSound)
                 {
                     player.speed = 0.0040f;
                     timeDangerSound = 0;
@@ -139,7 +139,7 @@ public class LevelManager : MonoBehaviour
             else if (energySlider.value <= thresholdDanger2)
             {
                 timeDangerSound += Time.deltaTime;
-                if (timeDangerSound >= maxTimeDangerSound)
+                if (timeDangerSound >= maxTimeDangerSound + 0.25f)
                 {
                     player.speed = 0.0035f;
                     timeDangerSound = 0;
