@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
     public float energyRegen = 2f;
 
     //  GAME ELEMENTS
-    private int maxDiamonds = 0;
+    public int maxDiamonds = 0;
     public int diamonds = 0;
 
     private Slider energySlider;

@@ -15,6 +15,7 @@ public class MainMenuController : MonoBehaviour
 
     public GameObject optionsBlock;
     public GameObject creditsBlock;
+    public GameObject tutorialBlock;
 
     public void onChangeMaster()
     {
@@ -77,6 +78,18 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
+    public void OpenTutorial(bool state)
+    {
+        if (state == true && tutorialBlock.activeInHierarchy)
+        {
+            tutorialBlock.SetActive(false);
+        }
+        else
+        {
+            tutorialBlock.SetActive(state);
+        }
+    }
+
     public void OpenOptions(bool state)
     {
         if (state == true && optionsBlock.activeInHierarchy)
@@ -110,8 +123,9 @@ public class MainMenuController : MonoBehaviour
     {
         optionsBlock.SetActive(false);
         creditsBlock.SetActive(false);
+        tutorialBlock.SetActive(false);
 
-        
+
         SoundManager.Instance.playingNow = Utils.PlayingNow.MAINMENU;
         SoundManager.Instance.StopMusic();
     }
