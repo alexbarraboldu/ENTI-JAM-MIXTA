@@ -267,6 +267,14 @@ public class SoundManager : MonoBehaviour
         Debug.LogWarning("AudioManager> AUDIO not found: " + name);
     }
 
+    public IEnumerator PlayRandomSfxAudioAfterSeconds(Utils.SpecialEffect specialEffect, float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+
+        PlayRandomSfx(specialEffect);
+
+    }
+
     public void StopAllAudiosByType(Utils.AudioType type)
     {
 
@@ -556,6 +564,11 @@ public class SoundManager : MonoBehaviour
         MUSICA
         !!!!!!
         */
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            PlayAudio(Utils.AudioType.EFFECT, "CollisionHit");
+        }
 
         //Esta condicion sirve para asegurarse de que siempre hay musica de fondo.
         if (musicAudioSource.isPlaying == false)

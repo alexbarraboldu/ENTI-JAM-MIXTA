@@ -584,6 +584,7 @@ public class PlayerController : MonoBehaviour
 		{
 			Debug.Log("Diamond");
 			SoundManager.Instance.PlaySfx("Diamond");
+			StartCoroutine(SoundManager.Instance.PlayRandomSfxAudioAfterSeconds(Utils.SpecialEffect.VOICEROBOT, 1.25f));
 			Destroy(other.gameObject);
 			LevelManager.Instance.diamonds += 1;
 		}
@@ -593,7 +594,7 @@ public class PlayerController : MonoBehaviour
 			Debug.Log("Power");
 
 			SoundManager.Instance.PlaySfx("Power");
-
+			StartCoroutine(SoundManager.Instance.PlayRandomSfxAudioAfterSeconds(Utils.SpecialEffect.VOICEROBOT, 1.25f));
 			Destroy(other.gameObject);
 
 			float powerEnergy = other.gameObject.GetComponent<PowerController>().energy;

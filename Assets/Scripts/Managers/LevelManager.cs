@@ -50,6 +50,8 @@ public class LevelManager : MonoBehaviour
 
         SoundManager.Instance.playingNow = Utils.PlayingNow.INGAME;
         SoundManager.Instance.StopMusic();
+
+        initPlayerSpeed = player.speed;
     }
 
     void Update()
@@ -81,7 +83,7 @@ public class LevelManager : MonoBehaviour
     public float thresholdDanger0 = 80;
     public float thresholdDanger1 = 50;
     public float thresholdDanger2 = 25;
-
+    private float initPlayerSpeed;
     void EnergyControl()
     {
         if (immortal) return;
@@ -103,6 +105,7 @@ public class LevelManager : MonoBehaviour
                 timeDangerSound += Time.deltaTime;
                 if(timeDangerSound >= maxTimeDangerSound - 0.75f)
                 {
+                    player.speed = 0.0045f;
                     timeDangerSound = 0;
                     SoundManager.Instance.PlaySfxForcePitch("Danger", 1);
                 }
@@ -112,6 +115,7 @@ public class LevelManager : MonoBehaviour
                 timeDangerSound += Time.deltaTime;
                 if (timeDangerSound >= maxTimeDangerSound-0.25f)
                 {
+                    player.speed = 0.0040f;
                     timeDangerSound = 0;
                     SoundManager.Instance.PlaySfxForcePitch("Danger", 0.87f);
                 }
@@ -121,18 +125,25 @@ public class LevelManager : MonoBehaviour
                 timeDangerSound += Time.deltaTime;
                 if (timeDangerSound >= maxTimeDangerSound)
                 {
+                    player.speed = 0.0035f;
                     timeDangerSound = 0;
                     SoundManager.Instance.PlaySfxForcePitch("Danger", 0.80f);
                 }
             }
         }
-        // PARTE LOGICA
+        
+        if(energySlider.value > thresholdDanger0)
+        {
+            player.speed = initPlayerSpeed;
+        }
 
+        // PARTE LOGICA
         if (player.isUnderDome)
         {
             if (energySlider.maxValue != energySlider.value)
             {
                 energy += energyRegen;
+                SoundManager.Instance.PlaySfx("RegenSound");
             }
         }
         else

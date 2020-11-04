@@ -59,6 +59,7 @@ public class PortalController : MonoBehaviour
 
                 //PlaySound
                 SoundManager.Instance.PlaySfx("Teleport");
+                StartCoroutine(SoundManager.Instance.PlayRandomSfxAudioAfterSeconds(Utils.SpecialEffect.VOICEROBOT, 1.25f));
 
                 //Set new position of CamTarget
                 camTarget.SetTarget(target.transform);
