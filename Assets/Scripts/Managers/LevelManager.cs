@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
     public float energyRegen = 2f;
 
     //  GAME ELEMENTS
-    private int maxDiamonds = 0;
+    public int maxDiamonds = 0;
     public int diamonds = 0;
 
     private Slider energySlider;
@@ -62,7 +62,7 @@ public class LevelManager : MonoBehaviour
 
         if (diamonds >= maxDiamonds)
         {
-            if (SceneManager.GetActiveScene().buildIndex == 3)
+            if (SceneManager.GetActiveScene().buildIndex == 5)
             {
                 SceneManager.LoadScene(1);
             }
