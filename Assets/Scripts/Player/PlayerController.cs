@@ -23,8 +23,11 @@ public class PlayerController : MonoBehaviour
 	public bool isUnderDome;
 
 	public bool teleporting;
-	public float timeLeft = 2f;
+	public float timeLeft = 1f;
 	private float timeLeftPrivate;
+
+	public float countToSound = 2f;
+	private float countToSoundPrivate;
 
 	//	ANIMATOR
 	public Animator anim;
@@ -46,6 +49,7 @@ public class PlayerController : MonoBehaviour
 		arrived = true;
 
 		timeLeftPrivate = timeLeft;
+		countToSoundPrivate = countToSound + 0.5f;
 
 		//	ANIMATOR
 		anim = GetComponentInChildren<Animator>();
@@ -280,6 +284,22 @@ public class PlayerController : MonoBehaviour
 
 			isOnFloor = false;
 			isCollisionVertical(xToGo, zToGo);
+			if (isOnFloor == false)
+			{
+				countToSoundPrivate -= Time.deltaTime;
+
+				if (countToSoundPrivate > 2f)
+                {
+					SoundManager.Instance.PlaySfxLoop("CollisionHit");
+                }
+
+				if (countToSoundPrivate < 0)
+				{
+					SoundManager.Instance.PlaySfxLoop("CollisionHit");
+					countToSoundPrivate = countToSound;
+				}
+			}
+			
 			if (isCollisionHorizontal(xToGo, zToGo) || isCollisionVertical(xToGo, zToGo) || isOnFloor == false)
 			{
 				moving = false;
@@ -553,6 +573,7 @@ public class PlayerController : MonoBehaviour
 					if (hit.collider.gameObject.tag == "Wall")
 					{
 						collisionList.Add(true);
+						SoundManager.Instance.PlaySfxLoop("CollisionHit");
 					}
 				}			
 				//	CHECK FLOOR
