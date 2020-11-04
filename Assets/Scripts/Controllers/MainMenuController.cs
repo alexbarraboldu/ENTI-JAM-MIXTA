@@ -130,6 +130,8 @@ public class MainMenuController : MonoBehaviour
 
         SoundManager.Instance.playingNow = Utils.PlayingNow.MAINMENU;
         SoundManager.Instance.StopMusic();
+
+        Cursor.visible = true;
     }
 
 }

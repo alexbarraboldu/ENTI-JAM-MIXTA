@@ -52,6 +52,9 @@ public class LevelManager : MonoBehaviour
         SoundManager.Instance.StopMusic();
 
         initPlayerSpeed = player.speed;
+
+        Cursor.visible = false;
+        immortal = false;
     }
 
     void Update()
@@ -60,6 +63,18 @@ public class LevelManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             energy = 100f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (immortal)
+            {
+                immortal = false;
+            }
+            else
+            {
+                immortal = true;
+            }
         }
 
         if (diamonds >= maxDiamonds)
@@ -86,19 +101,20 @@ public class LevelManager : MonoBehaviour
     private float initPlayerSpeed;
     void EnergyControl()
     {
-        if (immortal) return;
-
-        if (energySlider.value <= 0)
+        if (immortal)
         {
+            return;
+        }
 
+        if (energySlider.value <= 0 /*&& immortal == false*/)
+        {
             SceneManager.LoadScene(1);
-
             return;
         }
 
 
         // PARTE AUDIO
-        if (!player.isUnderDome)
+        if (!player.isUnderDome /*&& immortal == false*/)
         {
             if (energySlider.value <= thresholdDanger0 && energySlider.value > thresholdDanger1)
             {
@@ -148,7 +164,10 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            energy -= energyLoss;
+            //if (immortal)
+            //{
+                energy -= energyLoss;
+            //}
         }
 
         if (energy > maxEnergy)
