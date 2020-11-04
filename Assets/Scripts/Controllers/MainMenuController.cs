@@ -24,8 +24,10 @@ public class MainMenuController : MonoBehaviour
 
     public void onChangeMusic()
     {
+        
         SoundManager.Instance.SetMusicVolume(musicSlider.value);
         
+
     }
 
     public void PlayStartSound()

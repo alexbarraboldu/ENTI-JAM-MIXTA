@@ -481,7 +481,8 @@ public class SoundManager : MonoBehaviour
 
     private void ApplyMusicVolume()
     {
-        musicAudioSource.volume = musicVolume;
+        musicAudioSource.volume = masterVolume;
+        musicAudioSource.volume *= musicVolume;
     }
 
 
@@ -538,7 +539,7 @@ public class SoundManager : MonoBehaviour
         //Instanciamos las voices lines
         for (int i = 0; i < voiceClips.Length; i++)
         {
-            GameObject _go = new GameObject("SoundEffect_" + i + "_" + sfxClips[i].name);
+            GameObject _go = new GameObject("Voice_" + i + "_" + sfxClips[i].name);
             _go.transform.SetParent(this.transform);
             sfxClips[i].SetSource(_go.AddComponent<AudioSource>());
         }
