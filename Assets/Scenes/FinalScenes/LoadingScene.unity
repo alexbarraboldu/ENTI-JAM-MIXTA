@@ -380,6 +380,30 @@ MonoBehaviour:
     pitch: 1
     randomPitch: 0
     specialEffect: 5
+  - name: Voice1
+    clip: {fileID: 8300000, guid: f68803ae74a591d4087b86eaf1a18f9f, type: 3}
+    audioType: 1
+    pitch: 1.25
+    randomPitch: 0.05
+    specialEffect: 6
+  - name: Voice2
+    clip: {fileID: 8300000, guid: d92aaf1c1436ba342a6865bc5bad5c43, type: 3}
+    audioType: 1
+    pitch: 1.25
+    randomPitch: 0.05
+    specialEffect: 6
+  - name: Voice3
+    clip: {fileID: 8300000, guid: 2cf715edc0e59f7478d86c51d5393325, type: 3}
+    audioType: 1
+    pitch: 1.25
+    randomPitch: 0.05
+    specialEffect: 6
+  - name: Voice4
+    clip: {fileID: 8300000, guid: 8c058f187788db5498c2022ea72ff471, type: 3}
+    audioType: 1
+    pitch: 1.25
+    randomPitch: 0.05
+    specialEffect: 6
   voiceClips: []
   musicClips:
   - name: InGame

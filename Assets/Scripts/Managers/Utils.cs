@@ -41,7 +41,8 @@ public static class Utils
         DIAMOND,
         POWER,
         TELEPORT,
-        DOME
+        DOME,
+        VOICEROBOT
     };
 
     public enum MusicZone
