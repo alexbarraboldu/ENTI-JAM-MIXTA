@@ -143,7 +143,7 @@ public class LevelManager : MonoBehaviour
             if (energySlider.maxValue != energySlider.value)
             {
                 energy += energyRegen;
-                SoundManager.Instance.PlaySfx("RegenSound");
+                SoundManager.Instance.PlaySfxLoop("RegenSound");
             }
         }
         else

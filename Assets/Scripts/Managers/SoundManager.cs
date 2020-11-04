@@ -154,6 +154,22 @@ public class SoundManager : MonoBehaviour
         Debug.LogWarning("AudioManager> SFX not found: " + _name);
         return;
     }
+    
+    public void PlaySfxLoop(string _name)
+    {
+        for (int i = 0; i < sfxClips.Length; i++)
+        {
+            if (sfxClips[i].name == _name)
+            {
+                if(!sfxClips[i].GetAudioSource().isPlaying)
+                {
+                    sfxClips[i].Play();
+                }
+                return;
+            }
+        }
+    }
+
     public void PlaySfx(string _name)
     {
         for (int i = 0; i < sfxClips.Length; i++)
